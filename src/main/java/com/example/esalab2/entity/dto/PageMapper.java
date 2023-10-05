@@ -8,7 +8,7 @@ public class PageMapper {
     public static <E, R> PageDTO<R> map(Page<E> source, Function<E, R> mapper){
         PageDTO<R> dto = new PageDTO<>();
 
-        dto.setData(source.get().map(mapper).toList());
+        dto.setItems(source.get().map(mapper).toList());
         dto.setSize(source.getSize());
         dto.setNumber(source.getNumber());
         dto.setTotalPages(source.getTotalPages());

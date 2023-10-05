@@ -14,5 +14,5 @@ public class PageDTO<T> {
 
     long totalPages;
 
-    List<T> data;
+    List<T> items;
 }
