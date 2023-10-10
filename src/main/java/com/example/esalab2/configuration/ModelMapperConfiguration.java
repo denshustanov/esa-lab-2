@@ -1,4 +1,4 @@
-package com.example.esalab2.entity.configuration;
+package com.example.esalab2.configuration;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

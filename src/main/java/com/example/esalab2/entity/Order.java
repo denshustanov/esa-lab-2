@@ -1,5 +1,6 @@
 package com.example.esalab2.entity;
 
+import com.example.esalab2.service.OrderAuditListener;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
+@EntityListeners(OrderAuditListener.class)
 @Table(name = "orders")
 public class Order {
     @Id

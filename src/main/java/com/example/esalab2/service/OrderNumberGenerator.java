@@ -1,4 +1,4 @@
-package com.example.esalab2.entity.service;
+package com.example.esalab2.service;
 
 public interface OrderNumberGenerator {
     String generate();

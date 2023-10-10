@@ -1,10 +1,10 @@
-package com.example.esalab2.entity.service;
+package com.example.esalab2.service;
 
 
-import com.example.esalab2.entity.dto.OrderCreationDTO;
-import com.example.esalab2.entity.dto.OrderDTO;
-import com.example.esalab2.entity.dto.OrderUpdateDTO;
-import com.example.esalab2.entity.dto.PageDTO;
+import com.example.esalab2.dto.OrderCreationDTO;
+import com.example.esalab2.dto.OrderDTO;
+import com.example.esalab2.dto.OrderUpdateDTO;
+import com.example.esalab2.dto.PageDTO;
 
 import java.util.UUID;
 

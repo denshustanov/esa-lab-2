@@ -1,6 +1,6 @@
-package com.example.esalab2.entity.handler;
+package com.example.esalab2.handler;
 
-import com.example.esalab2.entity.dto.RequestError;
+import com.example.esalab2.dto.RequestError;
 import com.example.esalab2.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

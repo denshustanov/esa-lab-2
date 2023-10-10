@@ -1,13 +1,12 @@
-package com.example.esalab2.entity.service.impl;
+package com.example.esalab2.service.impl;
 
+import com.example.esalab2.dto.*;
 import com.example.esalab2.entity.Order;
 import com.example.esalab2.entity.OrderStatus;
-import com.example.esalab2.entity.dto.*;
-import com.example.esalab2.entity.service.OrderNumberGenerator;
-import com.example.esalab2.entity.service.OrderService;
 import com.example.esalab2.exception.ResourceNotFoundException;
 import com.example.esalab2.respository.OrderRepository;
-import org.aspectj.weaver.ast.Or;
+import com.example.esalab2.service.OrderNumberGenerator;
+import com.example.esalab2.service.OrderService;
 import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

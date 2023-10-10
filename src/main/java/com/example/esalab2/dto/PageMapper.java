@@ -1,4 +1,4 @@
-package com.example.esalab2.entity.dto;
+package com.example.esalab2.dto;
 
 import org.springframework.data.domain.Page;
 

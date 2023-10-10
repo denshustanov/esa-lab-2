@@ -1,6 +1,6 @@
-package com.example.esalab2.entity.service.impl;
+package com.example.esalab2.service.impl;
 
-import com.example.esalab2.entity.service.OrderNumberGenerator;
+import com.example.esalab2.service.OrderNumberGenerator;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;

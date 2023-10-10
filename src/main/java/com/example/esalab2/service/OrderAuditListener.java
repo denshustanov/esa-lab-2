@@ -2,7 +2,7 @@ package com.example.esalab2.service;
 
 import com.example.esalab2.entity.Audit;
 import com.example.esalab2.entity.Order;
-import com.example.esalab2.jms.JmsPublisher;
+import com.example.esalab2.jms.AuditEventPublisher;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.PostRemove;
 import jakarta.persistence.PostUpdate;
@@ -13,19 +13,20 @@ import org.springframework.data.domain.AuditorAware;
 import java.time.LocalDateTime;
 
 @Slf4j
-public class OrderListener {
+public class OrderAuditListener {
     public static final String PERSIST = "PERSIST";
     public static final String UPDATE = "UPDATE";
 
     public static final String REMOVE = "REMOVE";
 
+    //    @Autowired
     private static AuditorAware<String> auditorAware;
-    private static JmsPublisher publisher;
+    private static AuditEventPublisher publisher;
 
     @Autowired
-    public void init(AuditorAware<String> auditorAware, JmsPublisher publisher){
-        OrderListener.auditorAware = auditorAware;
-        OrderListener.publisher = publisher;
+    public void init(AuditorAware<String> auditorAware, AuditEventPublisher publisher) {
+        OrderAuditListener.auditorAware = auditorAware;
+        OrderAuditListener.publisher = publisher;
     }
 
     @PostPersist
@@ -48,8 +49,9 @@ public class OrderListener {
         Audit audit = new Audit();
         audit.setAction(action);
         audit.setTimestamp(LocalDateTime.now());
+        audit.setRecordId(order.getId());
+        audit.setEntity(Order.class.getName());
         audit.setAuditor(auditorAware.getCurrentAuditor().orElse(null));
-
         publisher.publish(audit);
     }
 }

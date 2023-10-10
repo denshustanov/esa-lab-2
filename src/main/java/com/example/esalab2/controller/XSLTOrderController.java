@@ -1,8 +1,8 @@
-package com.example.esalab2.entity.controller;
+package com.example.esalab2.controller;
 
-import com.example.esalab2.entity.dto.OrderDTO;
-import com.example.esalab2.entity.dto.PageDTO;
-import com.example.esalab2.entity.service.OrderService;
+import com.example.esalab2.dto.OrderDTO;
+import com.example.esalab2.dto.PageDTO;
+import com.example.esalab2.service.OrderService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.springframework.beans.factory.annotation.Autowired;
