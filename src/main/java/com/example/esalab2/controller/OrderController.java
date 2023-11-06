@@ -22,32 +22,36 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping
+    @GetMapping(produces = {"application/json", "application/xml"})
     public ResponseEntity<PageDTO<OrderDTO>> getAll(
             @RequestParam(name = "size", required = false, defaultValue = "10") int size,
-            @RequestParam(name = "page", required = false, defaultValue = "10") int page){
+            @RequestParam(name = "page", required = false, defaultValue = "10") int page) {
         return ResponseEntity.ok(orderService.getAll(page, size));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<OrderDTO> get(@PathVariable UUID id){
+    @GetMapping(path = "/{id}",
+            produces = {"application/json", "application/xml"})
+    public ResponseEntity<OrderDTO> get(@PathVariable UUID id) {
         return ResponseEntity.ok(orderService.getOrder(id));
     }
 
-    @PostMapping
-    public ResponseEntity<OrderDTO> postOrder(@RequestBody OrderCreationDTO dto){
+    @PostMapping(produces = {"application/json", "application/xml"},
+            consumes = {"application/json", "application/xml"})
+    public ResponseEntity<OrderDTO> postOrder(@RequestBody OrderCreationDTO dto) {
         return ResponseEntity.ok(orderService.save(dto));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(path = "/{id}",
+            produces = {"application/json", "application/xml"},
+            consumes = {"application/json", "application/xml"})
     public ResponseEntity<OrderDTO> putOrder(
             @PathVariable UUID id,
-            @RequestBody OrderUpdateDTO dto){
+            @RequestBody OrderUpdateDTO dto) {
         return ResponseEntity.ok(orderService.update(id, dto));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteOrder(@PathVariable UUID id){
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity<?> deleteOrder(@PathVariable UUID id) {
         orderService.delete(id);
         return ResponseEntity.ok().build();
     }
