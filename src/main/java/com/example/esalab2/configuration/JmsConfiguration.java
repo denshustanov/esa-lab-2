@@ -6,6 +6,7 @@ import jakarta.jms.ConnectionFactory;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
@@ -14,14 +15,13 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
 import org.springframework.jms.support.converter.MessageConverter;
 import org.springframework.jms.support.converter.MessageType;
-import org.springframework.jms.support.destination.DestinationResolver;
-import org.springframework.jms.support.destination.DynamicDestinationResolver;
 
 @EnableJms
 @Configuration
 @Getter
 @Setter
 public class JmsConfiguration {
+    public static final String DESTINATION = "audited-action";
 
     @Bean
     public MessageConverter jacksonMessageConverter() {
@@ -39,6 +39,7 @@ public class JmsConfiguration {
         JmsTemplate jmsTemplate = new JmsTemplate();
         jmsTemplate.setConnectionFactory(connectionFactory());
         jmsTemplate.setMessageConverter(jacksonMessageConverter());
+        jmsTemplate.setPubSubDomain(true);
 
         return jmsTemplate;
     }
@@ -46,8 +47,8 @@ public class JmsConfiguration {
     @Bean
     public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
+        factory.setPubSubDomain(true);
         factory.setConnectionFactory(connectionFactory());
-        factory.setDestinationResolver(destinationResolver());
         factory.setMessageConverter(jacksonMessageConverter());
 
         return factory;
@@ -60,8 +61,9 @@ public class JmsConfiguration {
         return activeMQConnectionFactory;
     }
 
+
     @Bean
-    public DestinationResolver destinationResolver() {
-        return new DynamicDestinationResolver();
+    public ActiveMQTopic auditTopic() {
+        return new ActiveMQTopic(DESTINATION);
     }
 }
